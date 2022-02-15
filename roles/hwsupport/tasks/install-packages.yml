@@ -1,0 +1,114 @@
+---
+- name: Install packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'acpi-support',
+            'alsa-base',
+            'alsa-utils',
+            'alsa-topology-conf',
+            'alsa-ucm-conf',
+            'archdetect-deb',
+            'bluez-cups',
+            'bluez-obexd',
+            'brltty',
+            'busybox-static',
+            'cdrdao',
+            'crda',
+            'dmeventd',
+            'dmidecode',
+            'dmraid',
+            'dns-root-data',
+            'dnsmasq-base',
+            'eject',
+            'fwupd',
+            #'fwupdate',
+            #'fwupdate-signed',
+            'hdparm',
+            'iio-sensor-proxy',
+            'inputattach',
+            'intel-microcode',
+            'ippusbxd',
+            'irqbalance',
+            'kpartx',
+            'kpartx-boot',
+            'laptop-detect',
+            'libmtp-runtime',
+            'libnet-dbus-perl',
+            'libpcaudio0',
+            'libsgutils2-2',
+            'lshw',
+            'media-player-info',
+            'memtest86+',
+            'mobile-broadband-provider-info',
+            'mokutil',
+            'modemmanager',
+            'os-prober',
+            'pci.ids',
+            'pciutils',
+            'pcmciautils',
+            'powermgmt-base',
+            'ppp',
+            'pppconfig',
+            'pppoeconf',
+            'pptp-linux',
+            'pulseaudio',
+            'pulseaudio-module-bluetooth',
+            'pulseaudio-utils',
+            'rfkill',
+            'rtkit',
+            'sane-utils',
+            'sbsigntool',
+            'secureboot-db',
+            'thermald',
+            'time',
+            'tpm-udev',
+            'udev',
+            'udisks2',
+            'upower',
+            'usb.ids',
+            'usb-modeswitch',
+            'usb-modeswitch-data',
+            'usbmount',
+            'usbmuxd',
+            'usbutils',
+            'wireless-regdb',
+            'wireless-tools',
+            'wodim',
+            'wpasupplicant' ]
+
+- name: Install print server packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 
+            'cups',
+            'cups-browsed',
+            'cups-bsd',
+            'cups-client',
+            'cups-common',
+            'cups-core-drivers',
+            'cups-daemon',
+            'cups-filters',
+            'cups-filters-core-drivers',
+            'cups-pk-helper',
+            'cups-ppdc',
+            'cups-server-common',
+            'foomatic-db-compressed-ppds',
+            'openprinting-ppds',
+            'printer-driver-cups-pdf',
+            'printer-driver-foo2zjs',
+            'system-config-printer',
+            'system-config-printer-udev' ]
+
+- name: Install yubikey support packages (including Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: yes
+    name: [ 
+            'yubikey-personalization',
+            'yubikey-personalization-gui',
+            'libpam-u2f' ]

@@ -1,0 +1,29 @@
+---
+- name: Install packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'command-not-found',
+            'dnsutils',
+            'ed',
+            'ftp',
+            'less',
+            'lsof',
+            'ltrace',
+            'manpages',
+            'mlocate',
+            'nano',
+            'net-tools',
+            'openssh-client',
+            'p7zip-full',
+            'patch',
+            'patchutils',
+            'python3-commandnotfound',
+            'tcl',
+            'telnet',
+            'tmux',
+            'unzip',
+            'vim-nox',
+            'wget',
+            'zip' ]

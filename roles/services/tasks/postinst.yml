@@ -1,0 +1,52 @@
+---
+- name: permit root ssh logins
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ^PermitRootLogin*
+    line: "PermitRootLogin yes"
+
+- name: do not hash known hosts for bash_completion
+  lineinfile:
+    dest: /etc/ssh/ssh_config
+    regexp: ^HashKnownHosts*
+    line: "HashKnownHosts no"
+
+- name: blacklist automated upgrading of some bigger packages
+  template:
+    src: templates/50unattended-upgrades.template
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: '0644'
+
+    #- name: set apt proxy
+    #  template:
+    #    src: templates/00apt-cacher-proxy.template
+    #    dest: /etc/apt/apt.conf.d/00apt-cacher-proxy
+    #    owner: root
+    #    group: root
+    #    mode: '0644'
+    #
+- name: configure xrdp login dialog
+  template:
+    src: templates/xrdp.ini.template
+    dest: /etc/xrdp/xrdp.ini
+    owner: root
+    group: root
+    mode: '0644'
+
+#- name: configure to use remote syslog-ng server
+#  template:
+#    src: templates/syslog-ng.conf.template
+#    dest: /etc/syslog-ng/syslog-ng.conf
+#    owner: root
+#    group: root
+#    mode: '0644'
+#
+#- name: fix syslog-ng systemd unit file to wait for network-online.target
+#  template:
+#    src: templates/syslog-ng.service.template
+#    dest: /lib/systemd/system/syslog-ng.service
+#    owner: root
+#    group: root
+#    mode: '0644'

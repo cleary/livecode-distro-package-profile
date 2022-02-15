@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: roles/essential }
+  - { role: roles/repos }

@@ -1,0 +1,8 @@
+---
+- name: autostart krfb on login
+  template:
+    src: templates/org.kde.krfb.desktop.template
+    dest: /etc/xdg/autostart/org.kde.krfb.desktop
+    owner: root
+    group: root
+    mode: '0644'

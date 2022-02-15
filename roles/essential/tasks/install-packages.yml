@@ -1,0 +1,49 @@
+---
+- name: Install packages (excluding Recommends)
+  apt: 
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'adduser',
+            'casper',
+            'console-setup',
+            'git',
+            'grub-pc-bin',
+            'grub-efi-amd64-bin',
+            'initramfs-tools',
+            'keyboard-configuration',
+            'language-pack-en',
+            'language-pack-en-base',
+            'language-selector-common',
+            'linux-firmware',
+            'locales',
+            'nplan',
+            'squashfs-tools',
+            'sudo',
+            'systemd',
+            'systemd-sysv',
+            'udev',
+            'user-setup',
+            'util-linux' ]
+
+
+- name: Install arch=amd64 apps
+  when: ansible_architecture == "x86_64"
+  apt: 
+    state: present 
+    update_cache: no
+    install_recommends: no
+    name: [ 'adduser',
+            'efibootmgr',
+            'mtools',
+            'isolinux',
+            'syslinux',
+            'syslinux-common',
+            'syslinux-legacy' ]
+
+- name: Install packages (including Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: yes
+    name: [ 'bash' ]

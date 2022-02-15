@@ -1,0 +1,54 @@
+---
+- name: set default locale to "{{ default_locale }}"
+  lineinfile:
+    dest: /etc/default/locale
+    line: "LANG={{ default_locale }}"
+    state: present
+
+- name: remove any unwanted other locales
+  lineinfile:
+    dest: /etc/default/locale
+    regexp: "^LANG=(?!{{ default_locale }})"
+    state: absent
+
+- name: set swappiness to use less swap
+  lineinfile:
+    dest: /etc/sysctl.conf
+    regexp: ^vm.swappiness.*
+    line: "vm.swappiness = 10"
+
+- name: configure global git credential stanza
+  lineinfile:
+    dest: /etc/gitconfig
+    line: "[credential]"
+    state: present
+    create: yes
+
+- name: configure global git credential caching
+  lineinfile:
+    dest: /etc/gitconfig
+    regexp: "^helper =" 
+    line: "helper = cache --timeout=600"
+    insertafter: "[credential]"
+
+- name: Create for OSSEC rules
+  file:
+    path: /var/ossec/rules/
+    state: directory
+    mode: '0755'
+
+- name: suppress systemd-resolved NXDOMAIN log messages with OSSEC rule
+  template:
+    src: templates/systemd_local_rules.xml.template
+    dest: /var/ossec/rules/local_rules.xml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: configure systemd journal defaults
+  template:
+    src: templates/journald.conf.template
+    dest: /etc/systemd/journald.conf
+    owner: root
+    group: root
+    mode: '0644'

@@ -1,0 +1,6 @@
+---
+#- include_tasks: preseed-debconf.yml
+
+- include_tasks: install-packages.yml
+
+#- include_tasks: postinst.yml

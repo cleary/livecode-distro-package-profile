@@ -1,0 +1,19 @@
+---
+
+- block:
+  - name: Install kernel (if in build chroot)
+    apt: 
+      state: present
+      update_cache: no
+      install_recommends: yes
+      name: "linux-image-{{ kernel_meta }}"
+    when: chrooted
+  
+  - name: Install kernel module packages (if required)
+    apt:
+      state: present
+      update_cache: no
+      install_recommends: yes
+      name: "linux-modules-{{ kernel_meta }}"
+    failed_when: False
+  when: chrooted

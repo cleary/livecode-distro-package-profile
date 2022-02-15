@@ -1,0 +1,22 @@
+---
+- name: Create hourly directory
+  file:
+    path: /etc/cron.hourly/
+    state: directory
+    mode: 0644
+
+- name: set an hourly cron job for ntpdate
+  template:
+    src: templates/dbw-ntpdate.template
+    dest: /etc/cron.hourly/dbw-ntpdate
+    owner: root
+    group: root
+    mode: 0755
+
+- name: configure the xdg user-dir defaults
+  template:
+    src: templates/xdg_user-dirs.defaults.template
+    dest: /etc/xdg/user-dirs.defaults
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,31 @@
+---
+
+- name: Prune leaked build host mdadm setups from the ISO
+  lineinfile:
+    path: /etc/mdadm/mdadm.conf
+    state: absent
+    regexp: ^ARRAY
+
+- name: configure sensible default for netplan, ref lp bug #1638842
+  template:
+    src: templates/netplan.conf.template
+    dest: /etc/netplan/01-network-manager-all.yaml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: allow users to set cups default printers
+  template:
+    src: templates/cupsd.conf.template
+    dest: /etc/cups/cupsd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: configure sensible default for usbmount
+  template:
+    src: templates/usbmount.conf.template
+    dest: /etc/usbmount/usbmount.conf
+    owner: root
+    group: root
+    mode: 0644

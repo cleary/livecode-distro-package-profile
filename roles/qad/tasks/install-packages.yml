@@ -1,0 +1,9 @@
+---
+- name: Install packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: yes
+    name: [ 'qad-linux-bottle',
+            'qad-linux-common',
+            'qad-linux-bin-train' ]

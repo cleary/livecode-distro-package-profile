@@ -1,0 +1,4 @@
+set -g window-style 'fg=colour241,bg=default'
+set -g window-active-style 'fg=white,bright,nodim,bg=default'
+set-window-option -g mode-keys vi
+set-window-option -g xterm-keys on

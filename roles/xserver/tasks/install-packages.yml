@@ -1,0 +1,73 @@
+---
+- name: Install packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'fontconfig',
+            'fontconfig-config',
+            'fonts-dejavu',
+            'fonts-dejavu-core',
+            'fonts-dejavu-extra',
+            'fonts-liberation',
+            'fonts-noto-cjk',
+            'fonts-noto-mono',
+            'fonts-opensymbol',
+            'intel-gpu-tools',
+            'kbd',
+            'libgl1-mesa-dri',
+            'libgl1-mesa-glx',
+            'libwacom-bin',
+            'libx11-protocol-perl',
+            'libxvmc1',
+            'mousetweaks',
+            'plymouth',
+            'plymouth-label',
+            'ttf-ancient-fonts-symbola',
+            'ttf-ubuntu-font-family',
+            'x11-apps',
+            'x11-common',
+            'x11-session-utils',
+            'x11-utils',
+            'x11-xkb-utils',
+            'x11-xserver-utils',
+            'xauth',
+            'xbitmaps',
+            'xcursor-themes',
+            'xdiagnose',
+            'xfonts-base',
+            'xfonts-encodings',
+            'xfonts-scalable',
+            'xfonts-utils',
+            'xinit',
+            'xinput',
+            'xkb-data',
+            'xorg',
+            'xorg-docs-core',
+            'xserver-xephyr',
+            'xserver-xorg',
+            'xserver-xorg-core',
+            'xserver-xorg-input-all',
+            'xserver-xorg-input-wacom',
+            'xserver-xorg-legacy',
+            'xserver-xorg-video-all',
+            'xserver-xorg-video-amdgpu',
+            'xserver-xorg-video-ati',
+            'xserver-xorg-video-fbdev',
+            'xserver-xorg-video-intel',
+            'xserver-xorg-video-nouveau',
+            'xserver-xorg-video-qxl',
+            'xserver-xorg-video-radeon',
+            'xserver-xorg-video-vesa',
+            'xserver-xorg-video-vmware',
+            'xsettingsd',
+            'xwayland' ]
+
+- name: Install virtualbox packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'virtualbox-guest-x11',
+            'virtualbox-guest-utils',
+            'virtualbox-guest-dkms' ]

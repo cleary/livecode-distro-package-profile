@@ -1,0 +1,48 @@
+---
+- hosts: all
+
+  pre_tasks:
+    - name: check if we are chrooted
+      shell:  '[[ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]]'
+      register: result
+      failed_when: result.rc >= 2
+      changed_when: False
+      args:
+        executable: /bin/bash
+
+    - block:
+      - meta: end_host
+        when: ansible_distribution_version != "20.04"
+      - set_fact: 
+          chroot_val: False
+      when: result.rc == 1
+
+    - block:
+      - set_fact: 
+          chroot_val: True
+      when: result.rc == 0
+
+    - set_fact: 
+        codename: "{{ ansible_distribution_release }}"
+
+  roles:
+    - roles/distro-ubuntustudio
+
+  #post_tasks:
+  #  - apt: name=libc6-dbg state=absent update_cache=no
+
+  vars:
+    kernel_meta: 'lowlatency'
+    default_locale: 'en_US.UTF-8'
+    chrooted: "{{ chroot_val }}"
+    repos:
+      - label: "ubuntu-updates"
+        uri: "http://aptmirror:3142/au.archive.ubuntu.com/ubuntu/"
+        cached:
+        suite: "{{ codename }}-updates"
+        components: "main restricted universe multiverse"
+      - label: "ubuntu-security"
+        uri: "http://aptmirror:3142/security.ubuntu.com/ubuntu/"
+        cached:
+        suite: "{{ codename }}-security"
+        components: "main restricted universe multiverse"

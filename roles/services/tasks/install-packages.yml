@@ -1,0 +1,28 @@
+---
+- name: Install packages (excluding Recommends)
+  apt:
+    state: present
+    update_cache: no
+    install_recommends: no
+    name: [ 'acpid',
+            'aptdaemon',
+            'avahi-autoipd',
+            'avahi-daemon',
+            'colord',
+            'colord-data',
+            'cron',
+            'libhttp-daemon-perl',
+            'logrotate',
+            'openssh-server',
+            'systemd-timesyncd',
+            'unattended-upgrades',
+            'xrdp',
+            'xorgxrdp' ]
+
+- name: Remove anacron (if required)
+  apt:
+    state: absent
+    autoremove: yes
+    purge: yes
+    name: [ 'anacron' ]
+  register: anacron_remove_status

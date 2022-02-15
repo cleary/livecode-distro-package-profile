@@ -1,0 +1,12 @@
+---
+
+#- name: Get exact name of the linux-modules-extra-XX package
+#  shell: dpkg -l | grep linux-modules-extra- | awk '{print $2}'
+#  register: pkg
+#  changed_when: False
+#
+#
+#- name: Remove kernel module extra package (if required)
+#  apt: name={{ item }} state=absent update_cache=no
+#  with_items:
+#    - "{{ pkg.stdout_lines }}"

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ntpdate ntp1.debortoli.private

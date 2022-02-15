@@ -1,0 +1,5 @@
+<rule id="234567" level="0">
+ <program_name>systemd-resolved</program_name>
+ <match>Server returned error NXDOMAIN</match>
+ <description>suppress systemd-resolved NXDOMAIN log message</description>
+</rule>

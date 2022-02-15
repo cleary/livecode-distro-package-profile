@@ -1,0 +1,17 @@
+---
+
+- name: write vim defaults
+  template:
+    src: templates/vimrc.local.template
+    dest: "/etc/vim/vimrc.local"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: write tmux defaults
+  template:
+    src: templates/tmux.conf.template
+    dest: "/etc/tmux.conf"
+    owner: root
+    group: root
+    mode: 0644

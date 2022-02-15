@@ -1,0 +1,14 @@
+---
+- name: debconf preseeding
+  debconf: 
+    name: "{{ item.p }}"
+    question: "{{ item.q }}"
+    vtype: "{{ item.vt }}"
+    value: "{{ item.val }}"
+  with_items:
+    - { p: "locales",
+        q: "locales/locales_to_be_generated", 
+        vt: "multiselect", 
+        val: "en_AU.UTF-8 UTF-8, en_GB.UTF-8 UTF-8, en_US.UTF-8 UTF-8" 
+      }
+
