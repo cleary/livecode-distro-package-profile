@@ -30,31 +30,6 @@
     update_cache: no
   with_items: "{{ repos }}"
 
-- block:
-  - name: add apt_keys via file for early-adopter repositories
-    apt_key:
-      data: "{{ item.gpgkey_file }}"
-      state: present
-    with_items: "{{ repos_early_adopter }}"
-    when: item.gpgkey_file is defined
-  
-  - name: add apt_keys via id for early-adopter repositories
-    apt_key:
-      data: "{{ item.gpgkey_id }}"
-      state: present
-    with_items: "{{ repos_early_adopter }}"
-    when: item.gpgkey_id is defined
-  
-  - name: add early-adopter repositories to sources.list.d
-    apt_repository:
-      repo: "deb {{ item.uri }} {{ item.suite }} {{ item.components }}"
-      filename: "{{ item.label }}"
-      state: present
-      validate_certs: no
-      update_cache: no
-    with_items: "{{ repos_early_adopter }}"
-  when: "'early-adopter' in group_names" 
-
 - name: Run "apt-get update"
   apt:
     update_cache: yes
