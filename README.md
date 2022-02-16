@@ -4,13 +4,6 @@
 
 # Usage
 
-## For Running Machines
-There is a standard workflow for incrementally pushing changes out to the GTs. This is defined by the two inventory files.  
-The `host_early-adopter` file is for the first tests of changes to any role. This is run with:
-```
-$ ansible-playbook -i hosts_early-adopter playbooks/2204-livecode-distro.yml
-```
-## For Building With pyfll
 ```
 <todo>
 ```
