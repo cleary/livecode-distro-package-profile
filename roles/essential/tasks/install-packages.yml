@@ -39,7 +39,8 @@
             'isolinux',
             'syslinux',
             'syslinux-common',
-            'syslinux-legacy' ]
+            'syslinux-efi',
+            'syslinux-utils' ]
 
 - name: Install packages (including Recommends)
   apt:
