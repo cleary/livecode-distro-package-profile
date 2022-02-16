@@ -12,7 +12,7 @@
 
     - block:
       - meta: end_host
-        when: ansible_distribution_version != "20.04"
+        when: ansible_distribution_version != "22.04"
       - set_fact: 
           chroot_val: False
       when: result.rc == 1
