@@ -2,3 +2,4 @@
 dependencies:
   - { role: roles/repos }
   - { role: roles/kernel-meta }
+  - { role: roles/essential }
